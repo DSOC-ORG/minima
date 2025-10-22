@@ -9,13 +9,15 @@ layout: base
 
   {{ content }}
 
-
   {% if site.paginate %}
     {% assign posts = paginator.posts %}
   {% else %}
     {% assign posts = site.posts %}
   {% endif %}
 
+  {% if page.language %} 
+    {% assign posts = posts | where: "language", page.language %}
+  {% endif %}
 
   {%- if posts.size > 0 -%}
     {%- if page.list_title -%}
